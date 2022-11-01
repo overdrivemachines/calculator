@@ -12,4 +12,8 @@ Live - https://overdrivemachines.github.io/calculator/
 
 ## References
 
-- Fonts -
+- Fonts
+  - https://www.retrosupply.co/blogs/retrosupply-blog/best-free-retro-and-vintage-fonts
+  - https://www.fontfabric.com/fonts/intro/
+- Font CSS - https://css-tricks.com/snippets/css/using-font-face-in-css/
+- Theme - https://www.behance.net/gallery/150095997/Calculator-design-%28retro-pixel-style%29?tracking_source=search_projects%7Ccalculator

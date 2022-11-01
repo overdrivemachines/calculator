@@ -1,9 +1,25 @@
+:root {
+  --color-bg: #fff;
+  --color-text: #000;
+  --color-calculator-bg: #fe0000;
+  --color-operator: #00ac02;
+  --color-screen-bg: #faff00;
+  --color-on: #01abf9;
+}
+@font-face {
+  font-family: "Intro";
+  src: url("fonts/intro.eot");
+  src: url("fonts/intro.eot?#iefix") format("embedded-opentype"), url("fonts/intro.woff2") format("woff2"),
+    url("fonts/intro.woff") format("woff"), url("fonts/intro.ttf") format("truetype");
+}
 
 html {
   box-sizing: border-box;
 }
 
 body {
+  font-family: "Intro", Fallback, sans-serif;
+  font-size: 3em;
   margin: 0;
   min-height: 100vh;
 }
