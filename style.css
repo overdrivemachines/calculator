@@ -1,16 +1,19 @@
 :root {
-  --color-bg: #fff;
-  --color-text: #000;
-  --color-calculator-bg: #fe0000;
-  --color-operator: #00ac02;
-  --color-screen-bg: #faff00;
+  --color-bg-body: #000; /* body background */
+  --color-bg-calculator: #21232f; /* body background */
+  --color-bg-board: #272a33; /* buttons board */
+  --color-bg-button: #2a2d36; /* button background */
+  /* --color-text: #fff; */
+  --color-text: #f4f7f9;
+  --color-operator: #f76f02;
+  --color-display-bg: #1e1f17;
   --color-on: #01abf9;
 }
 @font-face {
   font-family: "Intro";
   src: url("fonts/intro.eot");
-  src: url("fonts/intro.eot?#iefix") format("embedded-opentype"), url("fonts/intro.woff2") format("woff2"),
-    url("fonts/intro.woff") format("woff"), url("fonts/intro.ttf") format("truetype");
+  src: url("fonts/intro.eot?#iefix") format("embedded-opentype"), url("fonts/intro.woff2") format("woff2"), url("fonts/intro.woff") format("woff"),
+    url("fonts/intro.ttf") format("truetype");
 }
 
 html {
@@ -22,4 +25,48 @@ body {
   font-size: 3em;
   margin: 0;
   min-height: 100vh;
+  background-color: var(--color-bg-body);
+  color: var(--color-text);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator {
+  /* background: var(--color-bg-calculator); */
+  background-color: var(--color-display-bg);
+  width: 400px;
+  border-radius: 32px;
+}
+
+.calculator-display {
+  /* background-color: var(--color-display-bg); */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.calculator-display h1,
+h3 {
+  font-family: "Intro", Fallback, sans-serif;
+  margin: 0;
+  /* border: 1px solid yellow; */
+  line-height: 1;
+}
+
+.calculator-display h1 {
+  font-size: 72px;
+  padding: 16px 24px;
+}
+
+.calculator-display h3 {
+  font-size: 32px;
+  padding: 32px 24px 0 24px;
+}
+
+.calculator-bottons {
+  border-radius: 32px;
+  background: var(--color-bg-board);
 }
