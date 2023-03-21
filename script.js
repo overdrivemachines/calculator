@@ -29,8 +29,23 @@ function addDecimal() {
   }
 }
 
+// Calculate first and second values depending on operator
+const calculate = {
+  "/": (firstNumber, secondNumber) => firstNumber / secondNumber,
+  "*": (firstNumber, secondNumber) => firstNumber * secondNumber,
+  "+": (firstNumber, secondNumber) => firstNumber + secondNumber,
+  "-": (firstNumber, secondNumber) => firstNumber - secondNumber,
+  "=": (firstNumber, secondNumber) => secondNumber,
+};
+
 function useOperator(operator) {
   const currentValue = Number(displayResult.textContent);
+  // Prevent multiple operators
+  if (operatorValue && awaitingNextValue) {
+    operatorValue = operator;
+    displayExpression.textContent = `${firstValue}${operator}`;
+    return;
+  }
   if (operator == "sign") {
     displayResult.textContent = currentValue * -1;
     return;
@@ -38,17 +53,33 @@ function useOperator(operator) {
   // Assign firstValue if no value
   if (!firstValue) {
     firstValue = currentValue;
+    displayExpression.textContent = `${firstValue}${operator}`;
+
+    if (operator == "%") {
+      firstValue *= 0.01;
+      displayResult.textContent = firstValue;
+    }
   } else {
-    console.log("Current Value", currentValue);
+    console.log(firstValue, operatorValue, currentValue);
+    if (operator == "=") {
+      displayExpression.textContent = `${firstValue}${operatorValue}${currentValue}`;
+    }
+    const calculation = calculate[operatorValue](firstValue, currentValue);
+    console.log("calculation: ", calculation);
+    firstValue = calculation;
+    displayResult.textContent = firstValue;
+
+    if (operator == "%") {
+      displayExpression.textContent = `${firstValue}${operator}`;
+      firstValue *= 0.01;
+      displayResult.textContent = firstValue;
+    } else if (operator != "=") {
+      displayExpression.textContent = `${firstValue}${operator}`;
+    }
   }
   // Ready for the next value, store operator
   awaitingNextValue = true;
   operatorValue = operator;
-
-  displayExpression.textContent = `${firstValue}${operatorValue}`;
-
-  console.log("First Value:", firstValue);
-  console.log("Operator:", operatorValue);
 }
 
 // Add Event Listeners for buttons
