@@ -10,13 +10,28 @@ function sendNumberValue(number) {
   displayResult.textContent = displayValue == "0" ? number : displayValue + number;
 }
 
+function addDecimal() {
+  // If no decimal, add one
+  if (!displayResult.textContent.includes(".")) {
+    displayResult.textContent += ".";
+  }
+}
+
 // Add Event Listeners for buttons
 inputBtns.forEach((inputButton) => {
   if (inputButton.classList.length == 0 || inputButton.classList.contains("zero")) {
     inputButton.addEventListener("click", () => sendNumberValue(inputButton.value));
   } else if (inputButton.classList.contains("operator1") || inputButton.classList.contains("operator2")) {
-    inputButton.addEventListener("click", () => sendNumberValue(inputButton.value));
+    // inputButton.addEventListener("click", () => sendNumberValue(inputButton.value));
   } else if (inputButton.classList.contains("decimal")) {
-    inputButton.addEventListener("click", () => sendNumberValue("."));
+    inputButton.addEventListener("click", () => addDecimal());
   }
 });
+
+// Reset Display
+function resetAll() {
+  displayResult.textContent = "0";
+  displayExpression.textContent = "";
+}
+
+clearBtn.addEventListener("click", resetAll);

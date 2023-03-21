@@ -107,7 +107,8 @@ button:focus {
   outline: none;
 }
 
-.operator1 {
+.operator1,
+.clear {
   background: var(--color-operator1);
   color: var(--color-bg-body);
 }
