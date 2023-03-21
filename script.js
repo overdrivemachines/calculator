@@ -102,3 +102,28 @@ inputBtns.forEach((inputButton) => {
     inputButton.addEventListener("click", () => addDecimal());
   }
 });
+
+// 5632+355
+
+// When keys are pressed
+document.addEventListener("keydown", function (event) {
+  const num = Number(event.key);
+  // console.log("Pressed:", event.key);
+  // console.log("num:", num);
+  if (!isNaN(num)) {
+    sendNumberValue(num);
+  } else if (event.key == ".") {
+    addDecimal();
+  } else if (event.key == "/" || event.key == "*" || event.key == "-" || event.key == "+") {
+    useOperator(event.key);
+  } else if (event.key == "Enter" || event.key == "=") {
+    useOperator("=");
+  } else if (event.key == "Backspace") {
+    // if (awaitingNextValue) return;
+    // if (Number(displayResult.textContent) != 0) {
+    //   displayResult.textContent = displayResult.textContent.substring(0, displayResult.length - 1);
+    // }
+  } else {
+    console.log(event.key);
+  }
+});
