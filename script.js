@@ -27,6 +27,8 @@ function sendNumberValue(number) {
     const displayValue = displayResult.textContent;
     displayResult.textContent = displayValue == "0" ? number : displayValue + number;
   }
+
+  resizeDisplay();
 }
 
 function addDecimal() {
@@ -36,6 +38,8 @@ function addDecimal() {
   if (!displayResult.textContent.includes(".")) {
     displayResult.textContent += ".";
   }
+
+  resizeDisplay();
 }
 
 function useOperator(operator) {
@@ -80,6 +84,8 @@ function useOperator(operator) {
   // Ready for the next value, store operator
   awaitingNextValue = true;
   operatorValue = operator;
+
+  resizeDisplay();
 }
 
 // Reset all values, Display
@@ -89,6 +95,19 @@ function resetAll() {
   awaitingNextValue = false;
   displayResult.textContent = "0";
   displayExpression.textContent = "";
+
+  resizeDisplay();
+}
+
+function resizeDisplay() {
+  const length = displayResult.textContent.length;
+  if (length > 20) {
+    displayResult.style.fontSize = "24px";
+  } else if (length > 8) {
+    displayResult.style.fontSize = `${72 - length * 2.25}px`;
+  } else {
+    displayResult.style.fontSize = "72px";
+  }
 }
 
 // Add Event Listeners for buttons
@@ -114,7 +133,7 @@ document.addEventListener("keydown", function (event) {
     sendNumberValue(num);
   } else if (event.key == ".") {
     addDecimal();
-  } else if (event.key == "/" || event.key == "*" || event.key == "-" || event.key == "+") {
+  } else if (event.key == "/" || event.key == "*" || event.key == "-" || event.key == "+" || event.key == "%") {
     useOperator(event.key);
   } else if (event.key == "Enter" || event.key == "=") {
     useOperator("=");
@@ -123,6 +142,8 @@ document.addEventListener("keydown", function (event) {
     // if (Number(displayResult.textContent) != 0) {
     //   displayResult.textContent = displayResult.textContent.substring(0, displayResult.length - 1);
     // }
+  } else if (event.key == "c" || event.key == "C") {
+    resetAll();
   } else {
     console.log(event.key);
   }
